@@ -7,6 +7,9 @@ Bootstrap(app)
 def dummy_function():
     return 'Dummy'
 
+def example_function():
+    return 'Example'
+
 @app.route("/", methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
