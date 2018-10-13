@@ -4,6 +4,8 @@ import yaml, pymysql
 
 app = Flask(__name__)
 Bootstrap(app)
+def dummy_function():
+    return 'Dummy'
 
 @app.route("/", methods=['POST', 'GET'])
 def index():
