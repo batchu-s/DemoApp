@@ -4,26 +4,27 @@ import yaml, pymysql
 
 app = Flask(__name__)
 Bootstrap(app)
-def dummy_function():
-    return 'Dummy'
-
-def example_function():
-    return 'Example'
 
 @app.route("/", methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
-        uname = request.form['username']
-        password = request.form['password']
+        email = request.form['email']
         db = yaml.load(open('db.yaml'))
         conn = pymysql.Connection(host=db['mysql_host'], user=db['mysql_user'],
         password=db['mysql_password'], db=db['mysql_database'])
         try:
             with conn.cursor() as cursor:
-                sql = "INSERT INTO LOGIN VALUES(%s,%s)"
-                cursor.execute(sql, (uname, password))
+                sql = "INSERT INTO USERS VALUES(%s)"
+                print(cursor.execute(sql, (email)))
             conn.commit()
 
+            with conn.cursor() as cursor:
+                sql = "SELECT email FROM USERS"
+                cursor.execute(sql)
+                for row in cursor:
+                    if row[0] == email:
+                        print('Successfully registered!!')
+            
         finally:
             conn.close()
     return render_template('index.html')
