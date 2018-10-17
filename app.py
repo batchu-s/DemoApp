@@ -1,3 +1,4 @@
+""" This is the base document """
 from flask import Flask, render_template, request
 from flask_bootstrap import Bootstrap
 import yaml, pymysql

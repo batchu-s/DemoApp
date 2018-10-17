@@ -3,11 +3,12 @@
 {% block title %}DemoApp{% endblock %}
 
 {% block body %}
-<form method="POST">
-    <div class="form-group">
-        <label for="email">Email address:</label>
-        <input type="email" class="input-sm" name="email">
-    </div>
-    <input type="submit" class="btn btn-primary" value="Subscribe" />
-</form>
+
+<div>
+    <form method="POST">
+        Username: <input type="text" name="username" />
+        Password: <input type="password" name="password" />
+        <input type="submit" class="btn btn-success" />
+    </form>
+</div>
 {% endblock %}
